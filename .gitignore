@@ -1,7 +1,5 @@
 # 의존성 (Dependencies)
 node_modules/
-/client/node_modules
-/server/node_modules
 
 # 빌드 결과물 (Build outputs)
 build/
