@@ -1,5 +1,6 @@
 import { checkSsangJaeum, descriptionSsangJaeum } from "./rulelist/Ssangjauem";
 import { checkBatchim, descriptionBatchim } from "./rulelist/Batchim";
+import { checkSibiji, descriptionSibiji } from "./rulelist/Sibiji";
 
 export const rules = [
     {
@@ -29,13 +30,13 @@ export const rules = [
     },
     {
         id: 5,
-        desc: descriptionBatchim,
-        check: checkBatchim,
+        desc: "규칙 설명",
+        check: (pw) => true,
     },
     {
         id: 6,
-        desc: "규칙 설명",
-        check: (pw) => true,
+        desc: descriptionBatchim,
+        check: checkBatchim,
     },
     {
         id: 7,
@@ -44,8 +45,8 @@ export const rules = [
     },
     {
         id: 8,
-        desc: "규칙 설명",
-        check: (pw) => true,
+        desc: descriptionSibiji,
+        check: checkSibiji,
     },
     {
         id: 9,
