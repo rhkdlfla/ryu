@@ -2,6 +2,8 @@ import { checkSsangJaeum, descriptionSsangJaeum } from "./rulelist/Ssangjauem";
 import { checkBatchim, descriptionBatchim } from "./rulelist/Batchim";
 import { checkSibiji, descriptionSibiji } from "./rulelist/Sibiji";
 
+import { checkCaptcha, initCaptcha, RenderCaptcha } from "./rulelist/Captcha";
+
 export const rules = [
     {
         id: 1,
@@ -55,8 +57,10 @@ export const rules = [
     },
     {
         id: 10,
-        desc: "규칙 설명",
-        check: (pw) => true,
+        desc: "비밀번호에는 다음 captcha가 포함되어야 합니다.", // 기본 설명 (fallback)
+        init: initCaptcha,
+        check: checkCaptcha,
+        render: RenderCaptcha,
     },
     {
         id: 11,
