@@ -4,6 +4,14 @@ import { checkSibiji, descriptionSibiji } from "./rulelist/Sibiji";
 
 import { checkCaptcha, initCaptcha, RenderCaptcha } from "./rulelist/Captcha";
 
+
+/*
+id: 문제 번호
+desc: 문제 설명
+check: 검증 함수
+init: 초기화 함수(없어도됨)
+render: 렌더링 함수(설명을 할때 문자 외에 요소들이 더 필요할떄, JSX를 이용해 html로딩)(없어도됨)
+*/
 export const rules = [
     {
         id: 1,
@@ -57,7 +65,7 @@ export const rules = [
     },
     {
         id: 10,
-        desc: "비밀번호에는 다음 captcha가 포함되어야 합니다.", // 기본 설명 (fallback)
+        desc: "비밀번호에는 다음 captcha가 포함되어야 합니다.",
         init: initCaptcha,
         check: checkCaptcha,
         render: RenderCaptcha,
