@@ -1,16 +1,18 @@
 import { checkSsangJaeum, descriptionSsangJaeum } from "./rulelist/Ssangjauem";
 import { checkBatchim, descriptionBatchim } from "./rulelist/Batchim";
 import { checkSibiji, descriptionSibiji } from "./rulelist/Sibiji";
-
 import { checkCaptcha, initCaptcha, RenderCaptcha, descriptionCaptcha } from "./rulelist/Captcha";
 
 
 /*
+필수요소
 id: 문제 번호
 desc: 문제 설명
 check: 검증 함수
-init: 초기화 함수(없어도됨)
-render: 렌더링 함수(설명을 할때 문자 외에 요소들이 더 필요할떄, JSX를 이용해 html로딩)(없어도됨)
+
+선택요소
+init: 상태 초기화 함수
+render: 렌더링 함수(설명을 할때 문자 외에 요소들이 더 필요할떄, JSX를 이용해 html로딩)
 */
 export const rules = [
     {
