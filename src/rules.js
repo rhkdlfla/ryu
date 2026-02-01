@@ -2,7 +2,7 @@ import { checkSsangJaeum, descriptionSsangJaeum } from "./rulelist/Ssangjauem";
 import { checkBatchim, descriptionBatchim } from "./rulelist/Batchim";
 import { checkSibiji, descriptionSibiji } from "./rulelist/Sibiji";
 
-import { checkCaptcha, initCaptcha, RenderCaptcha } from "./rulelist/Captcha";
+import { checkCaptcha, initCaptcha, RenderCaptcha, descriptionCaptcha } from "./rulelist/Captcha";
 
 
 /*
