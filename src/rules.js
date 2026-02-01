@@ -65,7 +65,7 @@ export const rules = [
     },
     {
         id: 10,
-        desc: "비밀번호에는 다음 captcha가 포함되어야 합니다.",
+        desc: descriptionCaptcha,
         init: initCaptcha,
         check: checkCaptcha,
         render: RenderCaptcha,

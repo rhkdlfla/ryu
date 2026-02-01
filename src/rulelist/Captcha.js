@@ -118,3 +118,5 @@ export const RenderCaptcha = () => {
         </div>
     );
 };
+
+export const descriptionCaptcha = "비밀번호에는 다음 captcha가 포함되어야 합니다.";
