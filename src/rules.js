@@ -1,4 +1,5 @@
-import { checkSsangJaeum, descriptionRule4 } from "./rulelist/Ssangjauem";
+import { checkSsangJaeum, descriptionSsangJaeum } from "./rulelist/Ssangjauem";
+import { checkBatchim, descriptionBatchim } from "./rulelist/Batchim";
 
 export const rules = [
     {
@@ -28,8 +29,8 @@ export const rules = [
     },
     {
         id: 5,
-        desc: "규칙 설명",
-        check: (pw) => true,
+        desc: descriptionBatchim,
+        check: checkBatchim,
     },
     {
         id: 6,

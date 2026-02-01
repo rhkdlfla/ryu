@@ -7,4 +7,4 @@ export const checkSsangJaeum = (pw) => {
     return disassembled.some(char => ssangJaueum.includes(char));
 };
 
-export const descriptionSsangJaeum = "비밀번호는 쌍자음이 포함되어야 합니다";
+export const descriptionSsangJaeum = "비밀번호에 쌍자음이 포함되어야 합니다";
