@@ -11,15 +11,16 @@ function App() {
   }, [maxReached]);
 
   useEffect(() => {
-    const limit = maxReachedRef.current;
-    for (let i = 0; i <= limit; i++) {
-      const rule = rules[i];
-      if (!rule.check(password)) break;
-      if (i == limit) {
-        setMaxReached(v => v + 1);
-        if (rules[i + 1] && rules[i + 1].init != null) rules[i + 1].init();
-      }
+    if (maxReachedRef.current >= rules.length) return;
+    for (let i = 0; i <= maxReachedRef.current; i++) {
+      if (!rules[i].check(password)) return;
     }
+    let i;
+    for (i = maxReachedRef.current + 1; i < rules.length; i++) {
+      if (rules[i] && rules[i].init != null) rules[i].init();
+      if (!rules[i].check(password)) break;
+    }
+    setMaxReached(i);
   }, [password]);
 
   // 1분마다 주기적 업데이트
@@ -30,6 +31,7 @@ function App() {
         const limit = maxReachedRef.current;
         // Apply updates from all unlocked rules (Index 0 to limit)
         for (let i = 0; i <= limit; i++) {
+          if (i >= rules.length) return;
           const rule = rules[i];
           if (rule.update) {
             newPw = rule.update(newPw);
@@ -42,7 +44,7 @@ function App() {
   }, []);
 
   const isGameComplete =
-    maxReached > rules.length && rules.every(rule => rule.check(password));
+    maxReached >= rules.length && rules.every(rule => rule.check(password));
 
   return (
     <div style={{ maxWidth: "600px", margin: "50px auto", textAlign: "center", fontFamily: "sans-serif" }}>
