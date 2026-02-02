@@ -78,7 +78,7 @@ function App() {
             <p>{rule.desc}</p>
             {/* 커스텀 렌더링이 있으면 출력 */}
             {rule.render && <rule.render />}
-            <span>{rule.isPassed ? "✅ 통과" : "❌ 미달"}</span>
+            <span>{rule.check(password) ? "✅ 통과" : "❌ 미달"}</span>
           </div>
         ))}
       </div>
