@@ -14,6 +14,7 @@ function App() {
   useEffect(() => {
     if (maxReachedRef.current >= rules.length) return;
     for (let i = 0; i <= maxReachedRef.current; i++) {
+      if (i >= rules.length) break;
       if (!rules[i].check(password)) return;
     }
     let i;
@@ -32,9 +33,9 @@ function App() {
         const limit = maxReachedRef.current;
         // Apply updates from all unlocked rules (Index 0 to limit)
         for (let i = 0; i <= limit; i++) {
-          if (i >= rules.length) return;
+          if (i >= rules.length) break;
           const rule = rules[i];
-          if (rule.update) {
+          if (rule && rule.update) {
             newPw = rule.update(newPw);
           }
         }
