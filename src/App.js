@@ -65,8 +65,8 @@ function App() {
           <div
             key={rule.id}
             style={{
-              border: `2px solid ${rule.isPassed ? "#4CAF50" : "#FF5252"}`,
-              backgroundColor: rule.isPassed ? "#E8F5E9" : "#FFEBEE",
+              border: `2px solid ${rule.check(password) ? "#4CAF50" : "#FF5252"}`,
+              backgroundColor: rule.check(password) ? "#E8F5E9" : "#FFEBEE",
               padding: "15px",
               margin: "10px 0",
               borderRadius: "10px",
