@@ -1,56 +1,39 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useRef, useEffect } from "react";
 import { rules } from "./rules";
 
 function App() {
   const [password, setPassword] = useState("");
+  const [maxReached, setMaxReached] = useState(0);
+  const maxReachedRef = useRef(0);
 
-  // 규칙 초기화 로직
-  // visibleRules 계산 시에 init을 호출하면 렌더링 중 부작용이 발생하므로,
-  // 검사 로직과 초기화 로직을 분리하는 것이 이상적이나, 
-  // 여기서는 간단히 useEffect로 처리하거나, check 내부에서 처리하기보다
-  // "활성화된 규칙"이 처음 등장할 때 init을 호출해주는 별도 로직이 필요함.
+  useEffect(() => {
+    maxReachedRef.current = maxReached;
+  }, [maxReached]);
 
-  // 하지만 규칙이 순차적으로 보여야 하므로, 
-  // "통과하지 못한 첫 번째 규칙"까지만 보여주는 로직을 유지하면서
-  // 그 규칙이 init이 필요하고 state가 없다면 init을 수행해야 함.
-
-  const visibleRules = useMemo(() => {
-    const results = [];
-    for (const rule of rules) {
-      // rule-specific state는 rule module 내부에서 관리됨
-      // 따라서 check에 password만 전달하면 됨
-      const isPassed = rule.check(password);
-      results.push({ ...rule, isPassed });
-
-      if (!isPassed) break;
-    }
-    return results.reverse();
-  }, [password]);
-
-  // 필요한 규칙 초기화 (Effect)
-  React.useEffect(() => {
-    // 현재 보여지는 규칙 중 통과하지 못한 가장 최신 규칙 찾기
-    const lastVisibleRule = visibleRules[0];
-    if (lastVisibleRule && !lastVisibleRule.isPassed) {
-      // init 함수가 있다면 호출하여 내부 상태 초기화 (이미 초기화되었다면 모듈 내부에서 처리)
-      if (lastVisibleRule.init) {
-        lastVisibleRule.init();
+  useEffect(() => {
+    const limit = maxReachedRef.current;
+    for (let i = 0; i <= limit; i++) {
+      const rule = rules[i];
+      if (!rule.check(password)) break;
+      if (i == limit) {
+        setMaxReached(v => v + 1);
+        if (rules[i + 1]) rules[i + 1].init();
       }
     }
-  }, [visibleRules]);
+  }, [password]);
 
   // 1분마다 주기적 업데이트
-  React.useEffect(() => {
+  useEffect(() => {
     const interval = setInterval(() => {
       setPassword((prev) => {
         let newPw = prev;
-        for (const rule of rules) {
+        const limit = maxReachedRef.current;
+        // Apply updates from all unlocked rules (Index 0 to limit)
+        for (let i = 0; i <= limit; i++) {
+          const rule = rules[i];
           if (rule.update) {
             newPw = rule.update(newPw);
           }
-          // 현재 비밀번호 기준으로 규칙 통과 여부 확인
-          // 통과하지 못하면 이 규칙이 마지막 해금된 규칙이므로 여기서 종료
-          if (!rule.check(prev)) break;
         }
         return newPw;
       });
@@ -59,8 +42,7 @@ function App() {
   }, []);
 
   const isGameComplete =
-    visibleRules.length === rules.length &&
-    visibleRules.every(r => r.isPassed);
+    maxReached > rules.length && rules.every(rule => rule.check(password));
 
   return (
     <div style={{ maxWidth: "600px", margin: "50px auto", textAlign: "center", fontFamily: "sans-serif" }}>
@@ -79,7 +61,7 @@ function App() {
       </div>
 
       <div style={{ marginTop: "30px" }}>
-        {visibleRules.map((rule) => (
+        {rules.slice(0, maxReached + 1).reverse().map((rule) => (
           <div
             key={rule.id}
             style={{
