@@ -13,6 +13,7 @@ check: 검증 함수
 선택요소
 init: 상태 초기화 함수
 render: 렌더링 함수(설명을 할때 문자 외에 요소들이 더 필요할떄, JSX를 이용해 html로딩)
+update: 주기적 업데이트 함수 (currentPassword) => newPassword, 매분마다 실행됨, 번호 오름차순으로
 */
 export const rules = [
     {

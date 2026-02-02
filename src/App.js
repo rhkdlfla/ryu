@@ -39,6 +39,25 @@ function App() {
     }
   }, [visibleRules]);
 
+  // 1분마다 주기적 업데이트
+  React.useEffect(() => {
+    const interval = setInterval(() => {
+      setPassword((prev) => {
+        let newPw = prev;
+        for (const rule of rules) {
+          if (rule.update) {
+            newPw = rule.update(newPw);
+          }
+          // 현재 비밀번호 기준으로 규칙 통과 여부 확인
+          // 통과하지 못하면 이 규칙이 마지막 해금된 규칙이므로 여기서 종료
+          if (!rule.check(prev)) break;
+        }
+        return newPw;
+      });
+    }, 60000);
+    return () => clearInterval(interval);
+  }, []);
+
   const isGameComplete =
     visibleRules.length === rules.length &&
     visibleRules.every(r => r.isPassed);
