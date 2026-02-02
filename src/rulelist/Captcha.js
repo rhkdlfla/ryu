@@ -1,4 +1,4 @@
-
+//captcha datasets from: https://www.kaggle.com/datasets/huthayfahodeb/captcha-dataset?resource=download
 import React from 'react';
 
 export const captchaData = [
