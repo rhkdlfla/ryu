@@ -1,18 +1,15 @@
-import { loadPyodide } from "pyodide";
 
 let pyodide = null;
 
 // 앱 시작 시 한 번만 로드하도록 초기화 함수 제공
 export const initPyodide = async () => {
-    if (!pyodide) {
-        pyodide = await loadPyodide({
-            indexURL: "https://cdn.jsdelivr.net/pyodide/v0.25.0/full/"
-        });
+    if (!pyodide && window.loadPyodide) {
+        pyodide = await window.loadPyodide();
     }
 };
 
 export const checkCompilable = (pw) => {
-    // pyodide가 아직 로드되지 않았거나 빈 입력이면 false (또는 통과 처리 등 정책 결정 필요, 여기선 false)
+    // pyodide가 아직 로드되지 않았거나 빈 입력이면 false
     if (!pyodide || !pw) return false;
 
     try {
