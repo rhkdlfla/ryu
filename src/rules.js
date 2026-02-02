@@ -2,7 +2,7 @@ import { checkSsangJaeum, descriptionSsangJaeum } from "./rulelist/Ssangjauem";
 import { checkBatchim, descriptionBatchim } from "./rulelist/Batchim";
 import { checkSibiji, descriptionSibiji } from "./rulelist/Sibiji";
 import { checkCaptcha, initCaptcha, RenderCaptcha, descriptionCaptcha } from "./rulelist/Captcha";
-
+import { checkSponsor, descriptionSponsor } from "./rulelist/Sponsor";
 
 /*
 필수요소
@@ -17,8 +17,8 @@ render: 렌더링 함수(설명을 할때 문자 외에 요소들이 더 필요�
 export const rules = [
     {
         id: 1,
-        desc: "비밀번호는 5글자 이상이어야 합니다.",
-        check: (pw) => pw.length >= 5,
+        desc: "비밀번호는 6글자 이상이어야 합니다.",
+        check: (pw) => pw.length >= 6,
     },
     {
         id: 2,
@@ -27,13 +27,8 @@ export const rules = [
     },
     {
         id: 3,
-        desc: "모든 숫자의 합은 25여야 합니다.",
-        check: (pw) => {
-            const numbers = pw.match(/\d/g);
-            if (!numbers) return false;
-            const sum = numbers.reduce((acc, curr) => acc + parseInt(curr), 0);
-            return sum === 25;
-        },
+        desc: "비밀번호에는 특수문자가 포함되어야 합니다.",
+        check: (pw) => /[!@#$%^&*()_+\-=[\]{}|;':",.\/<>?`~\\]/.test(pw),
     },
     {
         id: 4,
@@ -42,8 +37,13 @@ export const rules = [
     },
     {
         id: 5,
-        desc: "규칙 설명",
-        check: (pw) => true,
+        desc: "비밀번호의 숫자 합이 100이어야 합니다.",
+        check: (pw) => {
+            const numbers = pw.match(/\d/g);
+            if (!numbers) return false;
+            const sum = numbers.reduce((acc, curr) => acc + parseInt(curr), 0);
+            return sum === 100;
+        },
     },
     {
         id: 6,
@@ -52,8 +52,8 @@ export const rules = [
     },
     {
         id: 7,
-        desc: "규칙 설명",
-        check: (pw) => true,
+        desc: descriptionSponsor,
+        check: checkSponsor,
     },
     {
         id: 8,
