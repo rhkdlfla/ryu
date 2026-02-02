@@ -5,6 +5,14 @@ import { checkCaptcha, initCaptcha, RenderCaptcha, descriptionCaptcha } from "./
 import { checkSponsor, descriptionSponsor, RenderSponsor } from "./rulelist/Sponsor";
 import { checkSerious, descriptionSerious } from "./rulelist/Serious";
 import { checkPassedSchool, descriptionPassedSchool } from "./rulelist/PassedSchool";
+import { checkCompilable, descriptionCompilable } from "./rulelist/Compilable";
+
+
+
+
+
+
+
 /*
 필수요소
 id: 문제 번호
