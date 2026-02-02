@@ -17,7 +17,7 @@ function App() {
       if (!rule.check(password)) break;
       if (i == limit) {
         setMaxReached(v => v + 1);
-        if (rules[i + 1]) rules[i + 1].init();
+        if (rules[i + 1] && rules[i + 1].init != null) rules[i + 1].init();
       }
     }
   }, [password]);
