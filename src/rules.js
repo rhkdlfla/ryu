@@ -80,8 +80,8 @@ export const rules = [
     },
     {
         id: 12,
-        desc: "규칙 설명",
-        check: (pw) => true,
+        desc: descriptionCompilable,
+        check: checkCompilable,
     },
     {
         id: 13,

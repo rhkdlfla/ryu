@@ -1,5 +1,6 @@
 import React, { useState, useMemo, useRef, useEffect } from "react";
 import { rules } from "./rules";
+import { initPyodide } from "./rulelist/Compilable";
 
 function App() {
   const [password, setPassword] = useState("");
@@ -41,6 +42,11 @@ function App() {
       });
     }, 60000);
     return () => clearInterval(interval);
+  }, []);
+
+  // Pyodide 초기화
+  useEffect(() => {
+    initPyodide();
   }, []);
 
   const isGameComplete =
