@@ -2,8 +2,9 @@ import { checkSsangJaeum, descriptionSsangJaeum } from "./rulelist/Ssangjauem";
 import { checkBatchim, descriptionBatchim } from "./rulelist/Batchim";
 import { checkSibiji, descriptionSibiji } from "./rulelist/Sibiji";
 import { checkCaptcha, initCaptcha, RenderCaptcha, descriptionCaptcha } from "./rulelist/Captcha";
-import { checkSponsor, descriptionSponsor } from "./rulelist/Sponsor";
-
+import { checkSponsor, descriptionSponsor, RenderSponsor } from "./rulelist/Sponsor";
+import { checkSerious, descriptionSerious } from "./rulelist/Serious";
+import { checkPassedSchool, descriptionPassedSchool } from "./rulelist/PassedSchool";
 /*
 필수요소
 id: 문제 번호
@@ -55,6 +56,7 @@ export const rules = [
         id: 7,
         desc: descriptionSponsor,
         check: checkSponsor,
+        render: RenderSponsor,
     },
     {
         id: 8,
@@ -63,8 +65,8 @@ export const rules = [
     },
     {
         id: 9,
-        desc: "규칙 설명",
-        check: (pw) => true,
+        desc: descriptionPassedSchool,
+        check: checkPassedSchool,
     },
     {
         id: 10,
@@ -75,8 +77,8 @@ export const rules = [
     },
     {
         id: 11,
-        desc: "규칙 설명",
-        check: (pw) => true,
+        desc: descriptionSerious,
+        check: checkSerious,
     },
     {
         id: 12,
