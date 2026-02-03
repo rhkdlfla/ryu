@@ -22,4 +22,4 @@ export const checkCompilable = (pw) => {
     }
 };
 
-export const descriptionCompilable = "비밀번호가 파이썬으로 에러없이 실행 가능해야합니다.";
+export const descriptionCompilable = "비밀번호가 파이썬으로 에러없이 정상적으로 실행 가능해야합니다.";
