@@ -70,7 +70,15 @@ function App() {
       </div>
 
       <div style={{ marginTop: "30px" }}>
-        {rules.slice(0, maxReached + 1).reverse().map((rule) => (
+        {rules
+          .slice(0, maxReached + 1)
+          .sort((a, b) => {
+            const aPassed = a.check(password);
+            const bPassed = b.check(password);
+            if (aPassed !== bPassed) return aPassed ? 1 : -1; // 미달 먼저
+            return b.id - a.id; // 동일 상태: id 내림차순
+          })
+          .map((rule) => (
           <div
             key={rule.id}
             style={{
