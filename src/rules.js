@@ -5,6 +5,7 @@ import { checkCaptcha, initCaptcha, RenderCaptcha, descriptionCaptcha } from "./
 import { checkSponsor, descriptionSponsor, RenderSponsor } from "./rulelist/Sponsor";
 import { checkSerious, descriptionSerious } from "./rulelist/Serious";
 import { checkPassedSchool, descriptionPassedSchool } from "./rulelist/PassedSchool";
+import { checkCat, descriptionCat, RenderCat, initCat } from "./rulelist/Cat";
 import { checkCompilable, descriptionCompilable } from "./rulelist/Compilable";
 
 
@@ -100,8 +101,10 @@ export const rules = [
     },
     {
         id: 14,
-        desc: "규칙 설명",
-        check: (pw) => true,
+        desc: descriptionCat,
+        check: checkCat,
+        render: RenderCat,
+        init: initCat,
     },
     {
         id: 15,
