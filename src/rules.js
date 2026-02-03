@@ -6,7 +6,7 @@ import { checkSponsor, descriptionSponsor, RenderSponsor } from "./rulelist/Spon
 import { checkSerious, descriptionSerious } from "./rulelist/Serious";
 import { checkPassedSchool, descriptionPassedSchool } from "./rulelist/PassedSchool";
 import { checkCompilable, descriptionCompilable } from "./rulelist/Compilable";
-
+import { checkTrain, descriptionTrain, initTrain } from "./rulelist/Train";
 
 
 
@@ -115,8 +115,9 @@ export const rules = [
     },
     {
         id: 17,
-        desc: "규칙 설명",
-        check: (pw) => true,
+        desc: descriptionTrain,
+        check: checkTrain,
+        init: initTrain,
     },
     {
         id: 18,
