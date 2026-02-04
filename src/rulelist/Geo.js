@@ -77,6 +77,9 @@ export const RenderGeo = () => {
                     alt="건물 3D 모델"
                     camera-controls
                     auto-rotate
+                    camera-orbit="0deg 0deg 0.001m"
+                    min-camera-orbit="auto auto 0.001m"
+                    max-camera-orbit="auto auto 50m"
                     style={{
                         width: "100%",
                         height: "240px",
