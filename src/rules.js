@@ -30,13 +30,6 @@ update: 주기적 업데이트 함수 (currentPassword) => newPassword, 매분�
 */
 export const rules = [
     {
-        id: 13,
-        desc: descriptionGeo,
-        check: checkGeo,
-        render: RenderGeo,
-        init: initGeo,
-    },
-    {
         id: 1,
         desc: "비밀번호는 6글자 이상이어야 합니다.",
         check: (pw) => pw.length >= 6,
@@ -104,7 +97,13 @@ export const rules = [
         desc: descriptionCompilable,
         check: checkCompilable,
     },
-
+    {
+        id: 13,
+        desc: descriptionGeo,
+        check: checkGeo,
+        render: RenderGeo,
+        init: initGeo,
+    },
     {
         id: 14,
         desc: descriptionPL,
