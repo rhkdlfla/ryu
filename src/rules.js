@@ -29,13 +29,6 @@ update: 주기적 업데이트 함수 (currentPassword) => newPassword, 매분�
 */
 export const rules = [
     {
-        id: 15,
-        desc: descriptionBook,
-        check: checkBook,
-        init: initBook,
-        update: updateBook,
-    },
-    {
         id: 1,
         desc: "비밀번호는 6글자 이상이어야 합니다.",
         check: (pw) => pw.length >= 6,
@@ -114,7 +107,13 @@ export const rules = [
         render: RenderPL,
         check: checkPL,
     },
-
+    {
+        id: 15,
+        desc: descriptionBook,
+        check: checkBook,
+        init: initBook,
+        update: updateBook,
+    },
     {
         id: 16,
         desc: descriptionCat,
