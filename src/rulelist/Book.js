@@ -36,8 +36,8 @@ export const updateBook = (text) => {
     if (state.fedCount >= CONFIG.GOAL_COUNT) {
         state.completed = true;
         // 이미 완료되었는데 BEFORE가 보이면 즉시 AFTER로 치환
-        return text.includes(CONFIG.BEFORE) 
-            ? text.replace(CONFIG.BEFORE, CONFIG.AFTER) 
+        return text.includes(CONFIG.BEFORE)
+            ? text.replace(CONFIG.BEFORE, CONFIG.AFTER)
             : text;
     }
 
