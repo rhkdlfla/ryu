@@ -8,6 +8,7 @@ import { checkPassedSchool, descriptionPassedSchool } from "./rulelist/PassedSch
 import { checkCat, descriptionCat, RenderCat, initCat } from "./rulelist/Cat";
 import { checkCompilable, descriptionCompilable } from "./rulelist/Compilable";
 import { checkTrain, descriptionTrain, initTrain } from "./rulelist/Train";
+import { checkCraftonStock, descriptionCraftonStock, RenderCraftonStock, initCraftonStock } from "./rulelist/Craftonstock";
 
 
 
@@ -124,8 +125,10 @@ export const rules = [
     },
     {
         id: 18,
-        desc: "규칙 설명",
-        check: (pw) => true,
+        desc: descriptionCraftonStock,
+        check: checkCraftonStock,
+        render: RenderCraftonStock,
+        init: initCraftonStock,
     },
     {
         id: 19,
