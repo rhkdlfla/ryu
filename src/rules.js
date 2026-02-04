@@ -12,6 +12,7 @@ import { checkBook, descriptionBook, initBook, updateBook } from "./rulelist/Boo
 import { checkCraftonStock, descriptionCraftonStock, RenderCraftonStock, initCraftonStock } from "./rulelist/Craftonstock";
 import { checkPL, descriptionPL, RenderPL } from "./rulelist/PL";
 import { checkCoffee, descriptionCoffee, initCoffee, updateCoffee } from "./rulelist/Coffee";
+import { checkGeo, descriptionGeo, initGeo, RenderGeo } from "./rulelist/Geo";
 
 
 
@@ -28,6 +29,13 @@ render: 렌더링 함수(설명을 할때 문자 외에 요소들이 더 필요�
 update: 주기적 업데이트 함수 (currentPassword) => newPassword, 매분마다 실행됨, 번호 오름차순으로
 */
 export const rules = [
+    {
+        id: 13,
+        desc: descriptionGeo,
+        check: checkGeo,
+        render: RenderGeo,
+        init: initGeo,
+    },
     {
         id: 1,
         desc: "비밀번호는 6글자 이상이어야 합니다.",
@@ -96,11 +104,7 @@ export const rules = [
         desc: descriptionCompilable,
         check: checkCompilable,
     },
-    {
-        id: 13,
-        desc: "규칙 설명",
-        check: (pw) => true,
-    },
+
     {
         id: 14,
         desc: descriptionPL,
