@@ -48,9 +48,6 @@ export const RenderCraftonStock = () => {
 
     return (
         <div style={{ marginTop: '10px' }}>
-            <p style={{ fontSize: '14px', color: '#555' }}>
-                힌트: 크래프톤(259960)의 <b>전일 종가</b>는 얼마일까요?
-            </p>
             {loading ? (
                 <span style={{ fontSize: '12px', color: '#888' }}>주가 정보 불러오는 중...</span>
             ) : (
@@ -62,4 +59,4 @@ export const RenderCraftonStock = () => {
     );
 };
 
-export const descriptionCraftonStock = "비밀번호는 크래프톤의 주가(숫자)를 포함해야 합니다.";
+export const descriptionCraftonStock = "비밀번호는 크래프톤(259960)의 전일 종가를 포함해야 합니다.";
