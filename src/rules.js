@@ -9,7 +9,7 @@ import { checkCat, descriptionCat, RenderCat, initCat } from "./rulelist/Cat";
 import { checkCompilable, descriptionCompilable } from "./rulelist/Compilable";
 import { checkTrain, descriptionTrain, initTrain } from "./rulelist/Train";
 import { checkCraftonStock, descriptionCraftonStock, RenderCraftonStock, initCraftonStock } from "./rulelist/Craftonstock";
-
+import { checkPL, descriptionPL, RenderPL } from "./rulelist/PL";
 
 
 
@@ -102,10 +102,9 @@ export const rules = [
     },
     {
         id: 14,
-        desc: descriptionCat,
-        check: checkCat,
-        render: RenderCat,
-        init: initCat,
+        desc: descriptionPL,
+        render: RenderPL,
+        check: checkPL,
     },
     {
         id: 15,
@@ -114,8 +113,10 @@ export const rules = [
     },
     {
         id: 16,
-        desc: "규칙 설명",
-        check: (pw) => true,
+        desc: descriptionCat,
+        check: checkCat,
+        render: RenderCat,
+        init: initCat,
     },
     {
         id: 17,
