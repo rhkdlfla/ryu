@@ -3,7 +3,7 @@ const CONFIG = {
     BEFORE: "🧑‍🏫",
     AFTER: "👨‍💻",
     BOOK: "📚",
-    GOAL_COUNT: 15,
+    GOAL_COUNT: 7,
 };
 
 const state = {

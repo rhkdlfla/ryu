@@ -11,7 +11,7 @@ import { checkTrain, descriptionTrain, initTrain } from "./rulelist/Train";
 import { checkBook, descriptionBook, initBook, updateBook } from "./rulelist/Book";
 import { checkCraftonStock, descriptionCraftonStock, RenderCraftonStock, initCraftonStock } from "./rulelist/Craftonstock";
 import { checkPL, descriptionPL, RenderPL } from "./rulelist/PL";
-
+import { checkCoffee, descriptionCoffee, initCoffee, updateCoffee } from "./rulelist/Coffee";
 
 
 
@@ -136,8 +136,10 @@ export const rules = [
     },
     {
         id: 19,
-        desc: "규칙 설명",
-        check: (pw) => true,
+        desc: descriptionCoffee,
+        check: checkCoffee,
+        init: initCoffee,
+        update: updateCoffee,
     },
     {
         id: 20,
