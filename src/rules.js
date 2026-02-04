@@ -1,6 +1,6 @@
 import { checkSsangJaeum, descriptionSsangJaeum } from "./rulelist/Ssangjauem";
 import { checkBatchim, descriptionBatchim } from "./rulelist/Batchim";
-import { checkSibiji, descriptionSibiji } from "./rulelist/Sibiji";
+import { checkSibganji, descriptionSibganji } from "./rulelist/SibijiSibgan";
 import { checkCaptcha, initCaptcha, RenderCaptcha, descriptionCaptcha } from "./rulelist/Captcha";
 import { checkSponsor, descriptionSponsor, RenderSponsor } from "./rulelist/Sponsor";
 import { checkSerious, descriptionSerious } from "./rulelist/Serious";
@@ -9,6 +9,8 @@ import { checkCat, descriptionCat, RenderCat, initCat } from "./rulelist/Cat";
 import { checkCompilable, descriptionCompilable } from "./rulelist/Compilable";
 import { checkTrain, descriptionTrain, initTrain } from "./rulelist/Train";
 import { checkBook, descriptionBook, initBook, updateBook } from "./rulelist/Book";
+import { checkCraftonStock, descriptionCraftonStock, RenderCraftonStock, initCraftonStock } from "./rulelist/Craftonstock";
+import { checkPL, descriptionPL, RenderPL } from "./rulelist/PL";
 
 
 
@@ -76,8 +78,8 @@ export const rules = [
     },
     {
         id: 8,
-        desc: descriptionSibiji,
-        check: checkSibiji,
+        desc: descriptionSibganji,
+        check: checkSibganji,
     },
     {
         id: 9,
@@ -108,16 +110,17 @@ export const rules = [
     },
     {
         id: 14,
-        desc: descriptionCat,
-        check: checkCat,
-        render: RenderCat,
-        init: initCat,
+        desc: descriptionPL,
+        render: RenderPL,
+        check: checkPL,
     },
 
     {
         id: 16,
-        desc: "규칙 설명",
-        check: (pw) => true,
+        desc: descriptionCat,
+        check: checkCat,
+        render: RenderCat,
+        init: initCat,
     },
     {
         id: 17,
@@ -127,8 +130,10 @@ export const rules = [
     },
     {
         id: 18,
-        desc: "규칙 설명",
-        check: (pw) => true,
+        desc: descriptionCraftonStock,
+        check: checkCraftonStock,
+        render: RenderCraftonStock,
+        init: initCraftonStock,
     },
     {
         id: 19,

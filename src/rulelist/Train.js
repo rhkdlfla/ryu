@@ -74,7 +74,7 @@ const ensureTrainName = () => {
 };
 
 // --- [외부 export] ---
-export const descriptionTrain = "비밀번호는 오늘 서울역 방면에서 대전역에 도착하는 마지막 열차 이름이 포함되어야 합니다. (예: KTX023)";
+export const descriptionTrain = "비밀번호는 오늘 서울역 방면에서 대전역에 도착하는 마지막 KTX 열차 이름이 포함되어야 합니다. (예: KTX023)";
 
 export const initTrain = () => {
     ensureTrainName();
