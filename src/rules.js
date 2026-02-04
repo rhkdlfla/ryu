@@ -8,7 +8,7 @@ import { checkPassedSchool, descriptionPassedSchool } from "./rulelist/PassedSch
 import { checkCat, descriptionCat, RenderCat, initCat } from "./rulelist/Cat";
 import { checkCompilable, descriptionCompilable } from "./rulelist/Compilable";
 import { checkTrain, descriptionTrain, initTrain } from "./rulelist/Train";
-
+import { checkBook, descriptionBook, initBook, updateBook } from "./rulelist/Book";
 
 
 
@@ -26,6 +26,13 @@ render: 렌더링 함수(설명을 할때 문자 외에 요소들이 더 필요�
 update: 주기적 업데이트 함수 (currentPassword) => newPassword, 매분마다 실행됨, 번호 오름차순으로
 */
 export const rules = [
+    {
+        id: 15,
+        desc: descriptionBook,
+        check: checkBook,
+        init: initBook,
+        update: updateBook,
+    },
     {
         id: 1,
         desc: "비밀번호는 6글자 이상이어야 합니다.",
@@ -106,11 +113,7 @@ export const rules = [
         render: RenderCat,
         init: initCat,
     },
-    {
-        id: 15,
-        desc: "규칙 설명",
-        check: (pw) => true,
-    },
+
     {
         id: 16,
         desc: "규칙 설명",
