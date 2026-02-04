@@ -55,20 +55,13 @@ export const RenderGeo = () => {
 
     return (
         <div style={{ marginTop: "10px" }}>
-            <div style={{ marginBottom: "8px" }}>
+            <div style={{ marginBottom: "8px", textAlign: 'left' }}>
                 <button
                     type="button"
                     onClick={handleRefresh}
-                    style={{
-                        padding: "4px 8px",
-                        fontSize: "12px",
-                        cursor: "pointer",
-                        backgroundColor: "#f0f0f0",
-                        border: "1px solid #ccc",
-                        borderRadius: "4px",
-                    }}
+                    className="dsi-geo-button"
                 >
-                    🔄 다른 건물
+                    🔄 CHANGE TARGET
                 </button>
             </div>
             {viewerReady ? (
@@ -80,27 +73,11 @@ export const RenderGeo = () => {
                     camera-orbit="0deg 0deg 0.001m"
                     min-camera-orbit="auto auto 0.001m"
                     max-camera-orbit="auto auto 50m"
-                    style={{
-                        width: "100%",
-                        height: "240px",
-                        backgroundColor: "#eee",
-                        borderRadius: "8px",
-                    }}
+                    className="dsi-model-viewer-container"
                 />
             ) : (
-                <div
-                    style={{
-                        width: "100%",
-                        height: "240px",
-                        backgroundColor: "#eee",
-                        borderRadius: "8px",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        color: "#666",
-                    }}
-                >
-                    3D 뷰어 로딩 중…
+                <div className="dsi-model-viewer-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#00e5ff' }}>
+                    INITIALIZING 3D SCANNER...
                 </div>
             )}
         </div>

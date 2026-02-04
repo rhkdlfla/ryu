@@ -1,0 +1,372 @@
+/* DoorSecurityInterface.css */
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
+/* Animations */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9) translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes pulse {
+  50% {
+    opacity: .5;
+  }
+}
+
+.dsi-container {
+  /* Layout & Size */
+  width: 600px;
+  /* min-height 500px from reference */
+  min-height: 500px;
+  margin: 0 auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+
+  /* Appearance matches HologramWindow */
+  background-color: rgba(0, 0, 0, 0.4);
+  /* bg-black/40 */
+  border: 1px solid rgba(34, 211, 238, 0.5);
+  /* border-cyan-400/50 */
+  border-radius: 0.5rem;
+  /* rounded-lg */
+  backdrop-filter: blur(12px);
+  /* backdrop-blur-md */
+  box-shadow:
+    0 0 15px rgba(34, 211, 238, 0.3),
+    /* shadow-[0_0_15px_rgba(34,211,238,0.3)] */
+    0 0 20px rgba(6, 182, 212, 0.15),
+    inset 0 0 20px rgba(6, 182, 212, 0.05);
+
+  overflow: hidden;
+  font-family: 'Share Tech Mono', monospace;
+  color: white;
+
+  /* Animation */
+  animation: slideIn 0.5s ease-out forwards;
+}
+
+/* Scanline Effect */
+.dsi-scanline {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.1;
+  background:
+    linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%),
+    linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+  background-size: 100% 4px, 3px 100%;
+  z-index: 10;
+}
+
+/* Header */
+.dsi-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 1rem;
+  /* px-4 py-2 */
+  background-color: rgba(8, 51, 68, 0.3);
+  /* bg-cyan-950/30 */
+  border-bottom: 1px solid rgba(34, 211, 238, 0.3);
+  /* border-cyan-400/30 */
+}
+
+.dsi-title-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  /* gap-2 */
+}
+
+.dsi-status-dot {
+  width: 0.5rem;
+  /* w-2 */
+  height: 0.5rem;
+  /* h-2 */
+  background-color: #22d3ee;
+  /* bg-cyan-400 */
+  border-radius: 9999px;
+  /* rounded-full */
+  box-shadow: 0 0 5px #22d3ee;
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.dsi-title-text {
+  color: #22d3ee;
+  /* text-cyan-400 */
+  font-family: monospace;
+  /* font-mono */
+  font-size: 0.875rem;
+  /* text-sm */
+  letter-spacing: 0.1em;
+  /* tracking-widest */
+  text-transform: uppercase;
+  font-weight: 700;
+  /* font-bold */
+  filter: drop-shadow(0 0 5px rgba(34, 211, 238, 0.8));
+  margin: 0;
+}
+
+.dsi-header-bars {
+  display: flex;
+  gap: 0.25rem;
+  /* gap-1 */
+}
+
+.dsi-bar {
+  width: 0.75rem;
+  /* w-3 */
+  height: 0.25rem;
+  /* h-1 */
+}
+
+.dsi-bar-dark {
+  background-color: rgba(21, 94, 117, 0.5);
+  /* cyan-800/50 */
+}
+
+.dsi-bar-light {
+  background-color: rgba(34, 211, 238, 0.5);
+  /* cyan-400/50 */
+}
+
+/* Content Area */
+.dsi-content {
+  padding: 1.5rem;
+  /* p-6 */
+  position: relative;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+/* Reusing existing input styles but tweaking to match vibe */
+.dsi-section-label {
+  font-size: 0.9rem;
+  color: #00ffff;
+  /* Brighter neon */
+  margin-bottom: 0.25rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transform: scaleY(0.9);
+  /* Slight squash to reduce vertical height perception */
+  transform-origin: left;
+  text-shadow: 0 0 5px rgba(0, 255, 255, 0.8), 0 0 10px rgba(0, 229, 255, 0.5);
+  /* Glow effect */
+  font-weight: bold;
+}
+
+.dsi-input-wrapper {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.dsi-input {
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(34, 211, 238, 0.3);
+  border-radius: 0.25rem;
+  color: #fff;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 1.25rem;
+  padding: 0.75rem;
+  padding-right: 6rem;
+  outline: none;
+  box-sizing: border-box;
+  transition: all 0.2s;
+}
+
+.dsi-input::placeholder {
+  font-size: 0.9rem;
+  opacity: 0.5;
+}
+
+.dsi-input:focus {
+  border-color: #22d3ee;
+  box-shadow: 0 0 10px rgba(34, 211, 238, 0.2);
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.dsi-length {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgba(34, 211, 238, 0.6);
+  font-size: 0.8rem;
+}
+
+/* Rules List */
+.dsi-rules-container {
+  display: flex;
+  flex-direction: column-reverse;
+  /* Keep logic */
+  gap: 0.5rem;
+  flex: 1;
+  overflow-y: auto;
+  max-height: 250px;
+  padding-right: 0.5rem;
+}
+
+.dsi-rules-container::-webkit-scrollbar {
+  width: 4px;
+}
+
+.dsi-rules-container::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.dsi-rules-container::-webkit-scrollbar-thumb {
+  background: rgba(34, 211, 238, 0.3);
+  border-radius: 2px;
+}
+
+.dsi-rule-card {
+  border: 1px solid;
+  border-radius: 4px;
+  padding: 12px;
+  font-size: 0.75rem;
+  /* Reduced from 0.9rem */
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  transition: all 0.3s ease;
+  background-color: transparent;
+  /* Transparent background */
+}
+
+.dsi-rule-fail {
+  border-color: rgba(255, 50, 50, 0.4);
+  color: #ff5555;
+  background: linear-gradient(90deg, rgba(255, 0, 0, 0.1) 0%, transparent 100%);
+}
+
+.dsi-rule-pass {
+  border-color: rgba(34, 197, 94, 0.4);
+  color: #bbf7d0;
+  background: linear-gradient(90deg, rgba(34, 197, 94, 0.1) 0%, transparent 100%);
+}
+
+.dsi-rule-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  min-width: 24px;
+  /* Prevent shrinking */
+  margin-top: 0;
+}
+
+.dsi-rule-content strong {
+  display: block;
+  margin-bottom: 2px;
+  font-size: 0.75rem;
+  opacity: 0.7;
+  letter-spacing: 0.05em;
+}
+
+
+/* Footer Status */
+.dsi-footer {
+  margin-top: auto;
+  padding-top: 1rem;
+  text-align: center;
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.dsi-status-locked {
+  color: rgba(34, 211, 238, 0.6);
+}
+
+.dsi-status-open {
+  color: #22d3ee;
+  text-shadow: 0 0 10px #22d3ee;
+  font-weight: bold;
+}
+
+/* Corner Decorators - Replicating exactly from reference */
+.dsi-corner {
+  position: absolute;
+  width: 1rem;
+  /* w-4 */
+  height: 1rem;
+  /* h-4 */
+  border-color: #22d3ee;
+  /* border-cyan-400 */
+  border-style: solid;
+  pointer-events: none;
+}
+
+.dsi-corner-tl {
+  top: 0;
+  left: 0;
+  border-width: 2px 0 0 2px;
+  /* border-t-2 border-l-2 */
+  border-top-left-radius: 0.125rem;
+  /* rounded-tl-sm */
+}
+
+.dsi-corner-tr {
+  top: 0;
+  right: 0;
+  border-width: 2px 2px 0 0;
+  /* border-t-2 border-r-2 */
+  border-top-right-radius: 0.125rem;
+  /* rounded-tr-sm */
+}
+
+.dsi-corner-bl {
+  bottom: 0;
+  left: 0;
+  border-width: 0 0 2px 2px;
+  /* border-b-2 border-l-2 */
+  border-bottom-left-radius: 0.125rem;
+  /* rounded-bl-sm */
+}
+
+.dsi-corner-br {
+  border-bottom-right-radius: 0.125rem;
+  /* rounded-br-sm */
+}
+
+/* Geo Component Styles */
+.dsi-geo-button {
+  background: rgba(0, 229, 255, 0.1);
+  border: 1px solid #00e5ff;
+  color: #00e5ff;
+  padding: 6px 12px;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.75rem;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.2s;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.dsi-geo-button:hover {
+  background: rgba(0, 229, 255, 0.3);
+  box-shadow: 0 0 10px rgba(0, 229, 255, 0.4);
+}
+
+.dsi-model-viewer-container {
+  width: 100%;
+  height: 240px;
+  background-color: rgba(0, 0, 0, 0.3) !important;
+  /* Override inline if needed, but we will remove inline */
+  border: 1px solid rgba(0, 229, 255, 0.2);
+  border-radius: 4px;
+  margin-top: 8px;
+}
