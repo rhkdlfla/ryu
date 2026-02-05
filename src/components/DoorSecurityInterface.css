@@ -376,3 +376,109 @@
   border-radius: 4px;
   margin-top: 8px;
 }
+
+/* Success Overlay Styles */
+.dsi-success-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.4);
+  /* slight dim */
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.dsi-shield-container {
+  margin-bottom: 1.5rem;
+  animation: scaleIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.dsi-shield-icon {
+  filter: drop-shadow(0 0 10px #00ff9d);
+}
+
+.dsi-access-granted {
+  font-size: 2rem;
+  color: #00ff9d;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-weight: bold;
+  margin: 0;
+  text-shadow: 0 0 10px rgba(0, 255, 157, 0.8), 0 0 20px rgba(0, 255, 157, 0.4);
+  animation: slideUp 0.6s ease-out 0.2s forwards;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.dsi-access-subtext {
+  font-size: 0.8rem;
+  color: rgba(0, 255, 157, 0.7);
+  letter-spacing: 0.3em;
+  margin-top: 0.5rem;
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+  animation: slideUp 0.6s ease-out 0.4s forwards;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+@keyframes slideUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dsi-enter-btn {
+  background: rgba(0, 255, 157, 0.1);
+  border: 1px solid #00ff9d;
+  color: #00ff9d;
+  padding: 0.75rem 2rem;
+  font-family: inherit;
+  font-size: 1rem;
+  letter-spacing: 0.15em;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-transform: uppercase;
+  animation: slideUp 0.6s ease-out 0.6s forwards;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.dsi-enter-btn:hover {
+  background: rgba(0, 255, 157, 0.3);
+  box-shadow: 0 0 15px rgba(0, 255, 157, 0.5);
+  transform: translateY(-2px);
+}
+
+.dsi-enter-btn:active {
+  transform: translateY(0);
+}
