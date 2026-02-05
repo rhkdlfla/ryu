@@ -81,7 +81,7 @@ export const checkCaptcha = (pw) => {
 
 
 // UI 렌더링: 캡챠 이미지 표시
-export const RenderCaptcha = () => {
+export const RenderCaptcha = ({ onRuleChange }) => {
     // 내부 상태 변화를 감지하여 컴포넌트를 다시 그리기 위한 장치
     const [, setTick] = React.useState(0);
 
@@ -90,6 +90,9 @@ export const RenderCaptcha = () => {
         initCaptcha();
         // 리액트 컴포넌트 리렌더링 유발
         setTick(t => t + 1);
+        if (onRuleChange) {
+            onRuleChange();
+        }
     };
 
     if (!currentState) return null;

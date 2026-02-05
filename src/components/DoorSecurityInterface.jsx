@@ -1,7 +1,7 @@
 import React from 'react';
 import './DoorSecurityInterface.css';
 
-const DoorSecurityInterface = ({ password, setPassword, rules, maxReached, isGameComplete }) => {
+const DoorSecurityInterface = ({ password, setPassword, rules, maxReached, isGameComplete, onRuleChange }) => {
   return (
     <div className="dsi-container">
       {/* Scanline Effect */}
@@ -69,7 +69,7 @@ const DoorSecurityInterface = ({ password, setPassword, rules, maxReached, isGam
                     <strong>RULE {rule.id}</strong>
                     <div>
                       {rule.desc}
-                      {rule.render && <rule.render />}
+                      {rule.render && <rule.render onRuleChange={onRuleChange} />}
                     </div>
                   </div>
                 </div>

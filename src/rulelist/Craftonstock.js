@@ -48,12 +48,8 @@ export const RenderCraftonStock = () => {
 
     return (
         <div style={{ marginTop: '10px' }}>
-            {loading ? (
+            {loading && (
                 <span style={{ fontSize: '12px', color: '#888' }}>주가 정보 불러오는 중...</span>
-            ) : (
-                <span style={{ fontSize: '11px', color: '#aaa' }}>
-                    (현재 로드된 값: {stockPrice ? stockPrice : '로드 실패'})
-                </span>
             )}
         </div>
     );

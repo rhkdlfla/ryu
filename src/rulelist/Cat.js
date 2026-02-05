@@ -35,13 +35,12 @@ export const initCat = async () => {
 
 export const checkCat = (pw) => {
     if (!pw || !currentState) return false;
-    // 대소문자 구분 없이, 그리고 공백 무시 등으로 유연하게? 
-    // 일단은 단순 포함 여부 (품종 이름이 정확해야 함)
-    // 품종 이름에 공백이 있을 수 잇음.
-    return pw.toLowerCase().includes(currentState.answer.toLowerCase());
+    // 공백 제거 및 소문자 변환 후 비교
+    const normalize = (str) => str.replace(/\s+/g, '').toLowerCase();
+    return normalize(pw).includes(normalize(currentState.answer));
 };
 
-export const RenderCat = () => {
+export const RenderCat = ({ onRuleChange }) => {
     const [tick, setTick] = useState(0);
     const [loading, setLoading] = useState(false);
 
@@ -50,6 +49,9 @@ export const RenderCat = () => {
         await initCat();
         setLoading(false);
         setTick(t => t + 1);
+        if (onRuleChange) {
+            onRuleChange();
+        }
     };
 
     // 컴포넌트 마운트 시 데이터가 없으면 초기화
@@ -85,7 +87,7 @@ export const RenderCat = () => {
                 style={{ border: '1px solid #ddd', borderRadius: '4px', maxWidth: '100%', maxHeight: '300px' }}
             />
             {/* 디버깅 편의를 위해 정답을 숨겨둠 (주석 처리) */}
-            {<p style={{ fontSize: '10px', color: '#ccc' }}>{currentState.answer}</p>}
+            {/*<p style={{ fontSize: '10px', color: '#ccc' }}>{currentState.answer}</p>*/}
         </div>
     );
 };

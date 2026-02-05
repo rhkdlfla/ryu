@@ -21,7 +21,7 @@ export const checkGeo = (pw) => {
 
 export const descriptionGeo = "비밀번호에는 아래 건물의 파일명이 포함되어야 합니다.";
 
-export const RenderGeo = () => {
+export const RenderGeo = ({ onRuleChange }) => {
     const [, setTick] = React.useState(0);
     const [viewerReady, setViewerReady] = React.useState(false);
 
@@ -47,6 +47,9 @@ export const RenderGeo = () => {
     const handleRefresh = () => {
         initGeo();
         setTick((t) => t + 1);
+        if (onRuleChange) {
+            onRuleChange();
+        }
     };
 
     if (!currentState) return <div style={{ marginTop: "10px", color: "#666" }}>로딩 중...</div>;
