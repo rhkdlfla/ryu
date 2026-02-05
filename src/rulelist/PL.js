@@ -7,7 +7,9 @@ export const RenderPL = () => {
 };
 
 export const checkPL = (pw) => {
-    return pw.toLowerCase().includes("type checking");
+    if (!pw) return false;
+    const normalize = (str) => str.replace(/\s+/g, '').toLowerCase();
+    return normalize(pw).includes("typechecking");
 };
 
 export const descriptionPL = "비밀번호는 다음 문제의 답을 포함해야 합니다.";

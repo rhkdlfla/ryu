@@ -6,6 +6,7 @@ import DoorSecurityInterface from "./components/DoorSecurityInterface";
 function App() {
   const [password, setPassword] = useState("");
   const [maxReached, setMaxReached] = useState(0);
+  const [checkTrigger, setCheckTrigger] = useState(0);
   const maxReachedRef = useRef(0);
 
   useEffect(() => {
@@ -24,7 +25,8 @@ function App() {
       if (!rules[i].check(password)) break;
     }
     setMaxReached(i);
-  }, [password]);
+    setMaxReached(i);
+  }, [password, checkTrigger]);
 
   // 1분마다 주기적 업데이트
   useEffect(() => {
@@ -96,6 +98,7 @@ function App() {
         rules={rules}
         maxReached={maxReached}
         isGameComplete={isGameComplete}
+        onRuleChange={() => setCheckTrigger((c) => c + 1)}
       />
     </div>
   );
