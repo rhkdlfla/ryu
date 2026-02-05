@@ -51,13 +51,39 @@ function App() {
     initPyodide();
   }, []);
 
+  /* Intro Video State */
+  const [showIntro, setShowIntro] = useState(true);
+
+  useEffect(() => {
+    // Failsafe: End intro after 11.5s if video doesn't trigger end
+    const timer = setTimeout(() => setShowIntro(false), 11500);
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (showIntro) {
+    return (
+      <div style={{
+        position: 'fixed', inset: 0, zIndex: 9999, backgroundColor: 'black',
+        display: 'flex', alignItems: 'center', justifyContent: 'center'
+      }}>
+        <video
+          autoPlay muted playsInline
+          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+          onEnded={() => setShowIntro(false)}
+        >
+          <source src={require('./assets/intro.mp4')} type="video/mp4" />
+        </video>
+      </div>
+    );
+  }
+
   const isGameComplete =
     maxReached >= rules.length && rules.every(rule => rule.check(password));
 
   return (
     <div className="App" style={{
       minHeight: "100vh",
-      backgroundImage: `url(${require('./assets/bg.png')})`,
+      backgroundImage: `url(${require('./assets/bg_door.png')})`,
       backgroundSize: "cover",
       backgroundPosition: "center",
       display: "flex",

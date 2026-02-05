@@ -337,6 +337,10 @@
 }
 
 .dsi-corner-br {
+  bottom: 0;
+  right: 0;
+  border-width: 0 2px 2px 0;
+  /* border-b-2 border-r-2 */
   border-bottom-right-radius: 0.125rem;
   /* rounded-br-sm */
 }

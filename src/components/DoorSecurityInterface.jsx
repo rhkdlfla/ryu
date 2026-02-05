@@ -12,7 +12,7 @@ const DoorSecurityInterface = ({ password, setPassword, rules, maxReached, isGam
         <div className="dsi-title-group">
           <div className="dsi-status-dot" />
           <h2 className="dsi-title-text">
-            DOOR SECURITY INTERFACE
+            RYU's SECRET LAB - DOOR SECURITY
           </h2>
         </div>
         <div className="dsi-header-bars">
