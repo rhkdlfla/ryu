@@ -44,8 +44,8 @@ const DoorSecurityInterface = ({ password, setPassword, rules, maxReached, isGam
             .sort((a, b) => {
               const aPassed = a.check(password);
               const bPassed = b.check(password);
-              if (aPassed !== bPassed) return aPassed ? 1 : -1;
-              return b.id - a.id;
+              if (aPassed !== bPassed) return aPassed ? -1 : 1;
+              return a.id - b.id;
             })
             .map((rule) => {
               const passed = rule.check(password);

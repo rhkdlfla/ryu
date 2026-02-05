@@ -13,8 +13,9 @@ import { checkCraftonStock, descriptionCraftonStock, RenderCraftonStock, initCra
 import { checkPL, descriptionPL, RenderPL } from "./rulelist/PL";
 import { checkCoffee, descriptionCoffee, initCoffee, updateCoffee } from "./rulelist/Coffee";
 import { checkGeo, descriptionGeo, initGeo, RenderGeo } from "./rulelist/Geo";
-
-
+import { checkPaper, descriptionPaper, RenderPaper } from "./rulelist/Paper";
+import { checkEunwoo, descriptionEunwoo, RenderEunwoo } from "./rulelist/Eunwoo";
+import { checkKkomantle, descriptionKkomantle } from "./rulelist/Kkomantle";
 
 
 /*
@@ -146,7 +147,19 @@ export const rules = [
     },
     {
         id: 20,
-        desc: "규칙 설명",
-        check: (pw) => true,
+        desc: descriptionPaper,
+        check: checkPaper,
+        render: RenderPaper,
+    },
+    {
+        id: 21,
+        desc: descriptionEunwoo,
+        check: checkEunwoo,
+        render: RenderEunwoo,
+    },
+    {
+        id: 22,
+        desc: descriptionKkomantle,
+        check: checkKkomantle,
     },
 ];
