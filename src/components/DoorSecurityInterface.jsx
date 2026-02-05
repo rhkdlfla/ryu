@@ -92,15 +92,17 @@ const DoorSecurityInterface = ({ password, setPassword, rules, maxReached, isGam
       {isGameComplete && (
         <div className="dsi-success-overlay">
           <div className="dsi-shield-container">
-            <svg width="80" height="100" viewBox="0 0 24 30" fill="none" xmlns="http://www.w3.org/2000/svg" className="dsi-shield-icon">
-              <path d="M12 0L24 5V13C24 20.5 18.8 27.4 12 29C5.2 27.4 0 20.5 0 13V5L12 0Z" stroke="#00ff9d" strokeWidth="1.5" fill="rgba(0, 255, 157, 0.1)" />
-              <path d="M7 14.5L10.5 18L17 11.5" stroke="#00ff9d" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
+            <img
+              src={require('../assets/success_icon.png')}
+              alt="Success Shield"
+              className="dsi-shield-icon"
+              style={{ width: '100px', height: 'auto' }}
+            />
           </div>
           <h1 className="dsi-access-granted">ACCESS GRANTED</h1>
           <div className="dsi-access-subtext">SECURITY PROTOCOLS DISENGAGED</div>
 
-          <button className="dsi-enter-btn" onClick={() => alert("Welcome to the Secret Lab!")}>
+          <button className="dsi-enter-btn" onClick={() => window.location.href = 'https://plrg.kaist.ac.kr/'}>
             ENTER SYSTEM
           </button>
         </div>
