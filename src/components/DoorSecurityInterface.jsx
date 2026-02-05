@@ -12,7 +12,7 @@ const DoorSecurityInterface = ({ password, setPassword, rules, maxReached, isGam
         <div className="dsi-title-group">
           <div className="dsi-status-dot" />
           <h2 className="dsi-title-text">
-            DOOR SECURITY INTERFACE
+            RYU's SECRET LAB - DOOR SECURITY
           </h2>
         </div>
         <div className="dsi-header-bars">
@@ -23,7 +23,7 @@ const DoorSecurityInterface = ({ password, setPassword, rules, maxReached, isGam
       </div>
 
       {/* Content */}
-      <div className="dsi-content">
+      <div className="dsi-content" style={{ opacity: isGameComplete ? 0.3 : 1, transition: 'opacity 0.5s' }}>
         <div className="dsi-section-label">TARGET PASSWORD INPUT</div>
         <div className="dsi-input-wrapper">
           <input
@@ -33,6 +33,7 @@ const DoorSecurityInterface = ({ password, setPassword, rules, maxReached, isGam
             onChange={(e) => setPassword(e.target.value)}
             placeholder="입력하세요..."
             maxLength={99}
+            disabled={isGameComplete}
           />
           <div className="dsi-length">LENGTH: {password.length}</div>
         </div>
@@ -53,6 +54,7 @@ const DoorSecurityInterface = ({ password, setPassword, rules, maxReached, isGam
                 <div
                   key={rule.id}
                   className={`dsi-rule-card ${passed ? 'dsi-rule-pass' : 'dsi-rule-fail'}`}
+                  style={{ opacity: isGameComplete ? 0.5 : 1 }}
                 >
                   <div className="dsi-rule-icon">
                     {passed ? (
@@ -85,6 +87,24 @@ const DoorSecurityInterface = ({ password, setPassword, rules, maxReached, isGam
           )}
         </div>
       </div>
+
+      {/* Success Overlay */}
+      {isGameComplete && (
+        <div className="dsi-success-overlay">
+          <div className="dsi-shield-container">
+            <svg width="80" height="100" viewBox="0 0 24 30" fill="none" xmlns="http://www.w3.org/2000/svg" className="dsi-shield-icon">
+              <path d="M12 0L24 5V13C24 20.5 18.8 27.4 12 29C5.2 27.4 0 20.5 0 13V5L12 0Z" stroke="#00ff9d" strokeWidth="1.5" fill="rgba(0, 255, 157, 0.1)" />
+              <path d="M7 14.5L10.5 18L17 11.5" stroke="#00ff9d" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </div>
+          <h1 className="dsi-access-granted">ACCESS GRANTED</h1>
+          <div className="dsi-access-subtext">SECURITY PROTOCOLS DISENGAGED</div>
+
+          <button className="dsi-enter-btn" onClick={() => alert("Welcome to the Secret Lab!")}>
+            ENTER SYSTEM
+          </button>
+        </div>
+      )}
 
       {/* Corner Accents */}
       <div className="dsi-corner dsi-corner-tl" />
