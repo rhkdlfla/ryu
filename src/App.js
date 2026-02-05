@@ -62,45 +62,78 @@ function App() {
     return () => clearTimeout(timer);
   }, []);
 
-  if (showIntro) {
-    return (
-      <div style={{
-        position: 'fixed', inset: 0, zIndex: 9999, backgroundColor: 'black',
-        display: 'flex', alignItems: 'center', justifyContent: 'center'
-      }}>
-        <video
-          autoPlay muted playsInline
-          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-          onEnded={() => setShowIntro(false)}
-        >
-          <source src={require('./assets/intro.mp4')} type="video/mp4" />
-        </video>
-      </div>
-    );
-  }
+  /* Audio State */
+  const audioRef = useRef(null);
+
+  useEffect(() => {
+    const playAudio = () => {
+      if (audioRef.current) {
+        audioRef.current.play().then(() => {
+          // Auto-play started
+        }).catch(error => {
+          // Auto-play was prevented
+          console.log("Audio autoplay prevented:", error);
+        });
+      }
+    };
+
+    // Try playing immediately
+    playAudio();
+
+    // Also play on first user interaction (click)
+    const handleUserInteraction = () => {
+      playAudio();
+      document.removeEventListener('click', handleUserInteraction);
+    };
+
+    document.addEventListener('click', handleUserInteraction);
+
+    return () => {
+      document.removeEventListener('click', handleUserInteraction);
+    };
+  }, []);
 
   const isGameComplete =
     maxReached >= rules.length && rules.every(rule => rule.check(password));
 
   return (
-    <div className="App" style={{
-      minHeight: "100vh",
-      backgroundImage: `url(${require('./assets/bg_door.png')})`,
-      backgroundSize: "cover",
-      backgroundPosition: "center",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center"
-    }}>
-      <DoorSecurityInterface
-        password={password}
-        setPassword={setPassword}
-        rules={rules}
-        maxReached={maxReached}
-        isGameComplete={isGameComplete}
-        onRuleChange={() => setCheckTrigger((c) => c + 1)}
-      />
-    </div>
+    <>
+      <audio ref={audioRef} src={require('./assets/bgm.mp3')} loop />
+
+      {showIntro ? (
+        <div style={{
+          position: 'fixed', inset: 0, zIndex: 9999, backgroundColor: 'black',
+          display: 'flex', alignItems: 'center', justifyContent: 'center'
+        }}>
+          <video
+            autoPlay muted playsInline
+            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+            onEnded={() => setShowIntro(false)}
+          >
+            <source src={require('./assets/intro.mp4')} type="video/mp4" />
+          </video>
+        </div>
+      ) : (
+        <div className="App" style={{
+          minHeight: "100vh",
+          backgroundImage: `url(${require('./assets/bg_door.png')})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center"
+        }}>
+          <DoorSecurityInterface
+            password={password}
+            setPassword={setPassword}
+            rules={rules}
+            maxReached={maxReached}
+            isGameComplete={isGameComplete}
+            onRuleChange={() => setCheckTrigger((c) => c + 1)}
+          />
+        </div>
+      )}
+    </>
   );
 }
 

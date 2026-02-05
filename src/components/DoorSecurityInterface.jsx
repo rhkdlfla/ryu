@@ -45,8 +45,10 @@ const DoorSecurityInterface = ({ password, setPassword, rules, maxReached, isGam
             .sort((a, b) => {
               const aPassed = a.check(password);
               const bPassed = b.check(password);
-              if (aPassed !== bPassed) return aPassed ? -1 : 1;
-              return a.id - b.id;
+              // Failed first (top), Passed last (bottom)
+              if (aPassed !== bPassed) return aPassed ? 1 : -1;
+              // Descending ID (High ID at top)
+              return b.id - a.id;
             })
             .map((rule) => {
               const passed = rule.check(password);
@@ -96,7 +98,7 @@ const DoorSecurityInterface = ({ password, setPassword, rules, maxReached, isGam
               src={require('../assets/success_icon.png')}
               alt="Success Shield"
               className="dsi-shield-icon"
-              style={{ width: '100px', height: 'auto' }}
+              style={{ width: '160px', height: 'auto' }}
             />
           </div>
           <h1 className="dsi-access-granted">ACCESS GRANTED</h1>
