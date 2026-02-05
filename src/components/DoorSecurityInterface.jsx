@@ -1,7 +1,16 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import './DoorSecurityInterface.css';
 
 const DoorSecurityInterface = ({ password, setPassword, rules, maxReached, isGameComplete, onRuleChange }) => {
+  const textareaRef = useRef(null);
+
+  useEffect(() => {
+    if (textareaRef.current) {
+      textareaRef.current.style.height = 'auto';
+      textareaRef.current.style.height = textareaRef.current.scrollHeight + 'px';
+    }
+  }, [password]);
+
   return (
     <div className="dsi-container">
       {/* Scanline Effect */}
@@ -26,14 +35,16 @@ const DoorSecurityInterface = ({ password, setPassword, rules, maxReached, isGam
       <div className="dsi-content" style={{ opacity: isGameComplete ? 0.3 : 1, transition: 'opacity 0.5s' }}>
         <div className="dsi-section-label">TARGET PASSWORD INPUT</div>
         <div className="dsi-input-wrapper">
-          <input
-            type="text"
+          <textarea
+            ref={textareaRef}
             className="dsi-input"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            placeholder="입력하세요..."
+            placeholder="Enter password..."
             maxLength={99}
             disabled={isGameComplete}
+            rows={1}
+            style={{ resize: 'none', overflow: 'hidden' }}
           />
           <div className="dsi-length">LENGTH: {password.length}</div>
         </div>
