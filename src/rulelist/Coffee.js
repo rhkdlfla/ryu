@@ -39,7 +39,7 @@ export const checkCoffee = (text) => {
     // AFTER(🤷‍♂️) 상태면 무조건 미달이어야 함
     if (text.includes(CONFIG.AFTER)) return false;
     // 변환 전 대상(BEFORE)이 남아있으면 통과
-    return text.includes(CONFIG.BEFORE);
+    return text.includes(CONFIG.BEFORE) && text.includes(CONFIG.COFFEE);
 };
 
 // 4. 핵심 로직: "커피가 있으면 주기적으로 소모", "커피가 없으면 AFTER로 변환"
